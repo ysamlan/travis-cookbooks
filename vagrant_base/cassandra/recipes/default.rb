@@ -40,6 +40,18 @@ apt_repository "ASF-Cassandra-extra-key" do
   action :add
 end
 
+
+%w(/var/lib/cassandra, /var/log/cassandra).each do |dir|
+  directory(dir) do
+    action :create
+  end
+end
+
 package "cassandra" do
   action :install
+end
+
+service "cassandra" do
+  supports :restart => true, :status => true, :reload => true
+  action [:enable, :start]
 end
