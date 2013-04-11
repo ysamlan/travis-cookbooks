@@ -25,7 +25,7 @@ include_recipe "travis_build_environment::ci_user"
 
 cookbook_file "/usr/bin/travis-startup-script" do
   owner "root"
-  group "root"
+  group "wheel"
   mode 0755
 
   source "bin/travis-startup-script"
@@ -33,8 +33,15 @@ end
 
 cookbook_file "/etc/profile" do
   owner "root"
-  group "root"
+  group "wheel"
   mode 0644
 
   source "etc/profile-osx"
+end
+
+directory "/etc.profile.d" do
+  owner "root"
+  group "wheel"
+  mode "0755"
+  action :create
 end
