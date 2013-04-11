@@ -127,7 +127,7 @@ end
 
 # link /home/vagrant for those poor projects that absolutely depend on that legacy
 # home directory to be present. MK.
-if node.travis_build_environment.user != "vagrant"
+if node.travis_build_environment.user != "vagrant" && !platform?(:mac_os_x_server)
   link "/home/vagrant" do
     owner node.travis_build_environment.user
     group node.travis_build_environment.group
