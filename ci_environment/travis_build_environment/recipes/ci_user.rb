@@ -92,7 +92,7 @@ mount "#{node.travis_build_environment.home}/builds" do
   only_if { node.travis_build_environment[:use_tmpfs_for_builds] }
 end
 
-if platform? :mac_os_x_server
+if platform_family? :mac_os_x
   directory "#{node.travis_build_environment.home}/travis-utils" do
     owner node.travis_build_environment.user
     group node.travis_build_environment.group
@@ -127,7 +127,7 @@ end
 
 # link /home/vagrant for those poor projects that absolutely depend on that legacy
 # home directory to be present. MK.
-if node.travis_build_environment.user != "vagrant" && !platform?(:mac_os_x_server)
+if node.travis_build_environment.user != "vagrant" && !platform_family?(:mac_os_x)
   link "/home/vagrant" do
     owner node.travis_build_environment.user
     group node.travis_build_environment.group
