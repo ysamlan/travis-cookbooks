@@ -21,8 +21,6 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-include_recipe "travis_build_environment::ci_user"
-
 cookbook_file "/usr/bin/travis-startup-script" do
   owner "root"
   group "wheel"
@@ -45,3 +43,5 @@ directory "/etc/profile.d" do
   mode "0755"
   action :create
 end
+
+include_recipe "travis_build_environment::ci_user"
