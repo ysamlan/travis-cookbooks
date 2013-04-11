@@ -39,7 +39,7 @@ cookbook_file "/etc/profile" do
   source "etc/profile-osx"
 end
 
-directory "/etc.profile.d" do
+directory "/etc/profile.d" do
   owner "root"
   group "wheel"
   mode "0755"
