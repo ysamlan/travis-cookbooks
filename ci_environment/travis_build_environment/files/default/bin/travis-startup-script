@@ -1,0 +1,57 @@
+#!/usr/bin/env python
+
+import json
+import socket
+from urllib import urlopen
+from subprocess import call
+
+def my_ip():
+  # FIXME: Find a better way to do this
+  #   We do this because socket.gethostbyname(socket.gethostname())
+  #   returns the unhelpful "127.0.0.1"
+  max_tries = 300
+  for i in xrange(max_tries):
+    try:
+      sock = socket.socket()
+      sock.settimeout(3)
+      sock.connect(("shiro.miso", 80))
+      ip = sock.getsockname()[0]
+      sock.close()
+      return ip
+    except socket.error as e:
+      log("SocketError while getting IP: {}".format(e))
+      time.sleep(1)
+
+  errmsg = "ERROR: Unable to find IP after {} tries".format(max_tries)
+  print(errmsg)
+  assert False, errmsg
+
+url = "http://shiro.miso/{}/instance.json".format(my_ip())
+data = json.load(urlopen(url))
+
+startup_info = {}
+
+try:
+  startup_info = data["extra_info"]
+except KeyError:
+  exit(0)
+
+try:
+  call(["hostname", startup_info["hostname"]])
+except KeyError:
+  pass
+
+try:
+  call(["dscl", ".", "-passwd", "/Users/travis", startup_info["password"]])
+except KeyError:
+  pass
+
+try:
+  call(["security", "set-keychain-password", "-o", "x", "-p", startup_info["password"]])
+except KeyError:
+  pass
+
+try:
+  call(["security", "unlock-keychain", "-p", startup_info["password"]])
+except KeyError:
+  pass

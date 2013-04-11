@@ -92,6 +92,39 @@ mount "#{node.travis_build_environment.home}/builds" do
   only_if { node.travis_build_environment[:use_tmpfs_for_builds] }
 end
 
+if platform? :mac_os_x_server
+  directory "#{node.travis_build_environment.home}/travis-utils" do
+    owner node.travis_build_environment.user
+    group node.travis_build_environment.group
+    mode "0755"
+    action :create
+  end
+
+  cookbook_file "#{node.travis_build_environment.home}/travis-utils/osx-cibuild.sh" do
+    owner node.travis_build_environment.user
+    group node.travis_build_environment.group
+    mode 0755
+
+    source "ci_user/travis-utils/osx-cibuild.sh"
+  end
+
+  cookbook_file "#{node.travis_build_environment.home}/travis-utils/targets.awk" do
+    owner node.travis_build_environment.user
+    group node.travis_build_environment.group
+    mode 0755
+
+    source "ci_user/travis-utils/targets.awk"
+  end
+
+  cookbook_file "#{node.travis_build_environment.home}/travis-utils/xcodebuild.awk" do
+    owner node.travis_build_environment.user
+    group node.travis_build_environment.group
+    mode 0755
+
+    source "ci_user/travis-utils/xcodebuild.awk"
+  end
+end
+
 # link /home/vagrant for those poor projects that absolutely depend on that legacy
 # home directory to be present. MK.
 if node.travis_build_environment.user != "vagrant"
