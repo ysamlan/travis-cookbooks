@@ -25,10 +25,10 @@ fi
 # are specified on the command line.
 #
 # Individual names can be quoted to avoid word splitting.
-DEFAULT_TARGETS=
+: ${DEFAULT_TARGETS:=""}
 
 # Extra build settings to pass to xcodebuild.
-XCODEBUILD_SETTINGS="TEST_AFTER_BUILD=YES"
+: ${XCODEBUILD_SETTINGS:="TEST_AFTER_BUILD=YES"}
 
 ##
 ## Build Process
