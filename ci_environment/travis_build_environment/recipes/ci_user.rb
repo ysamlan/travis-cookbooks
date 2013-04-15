@@ -39,6 +39,14 @@ cookbook_file "#{node.travis_build_environment.home}/.gemrc" do
   source "ci_user/dot_gemrc.yml"
 end
 
+cookbook_file "#{node.travis_build_environment.home}/.gitconfig" do
+  owner node.travis_build_environment.user
+  group node.travis_build_environment.group
+  mode 0644
+
+  source "ci_user/dot_gitconfig"
+end
+
 
 template "#{node.travis_build_environment.home}/.bashrc" do
   owner node.travis_build_environment.user
