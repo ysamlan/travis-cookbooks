@@ -37,6 +37,14 @@ cookbook_file "/etc/profile" do
   source "etc/profile-osx"
 end
 
+cookbook_file "/etc/rc.common" do
+  owner "root"
+  group "wheel"
+  mode 0644
+
+  source "etc/rc.common-osx"
+end
+
 directory "/etc/profile.d" do
   owner "root"
   group "wheel"
