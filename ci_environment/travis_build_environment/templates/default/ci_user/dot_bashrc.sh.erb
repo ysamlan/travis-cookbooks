@@ -107,5 +107,7 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
+<% unless platform_family?(:mac_os_x) %>
 # we ulimit -n, so you don't have to
 ulimit -n 30000
+<% end %>
