@@ -101,6 +101,14 @@ mount "#{node.travis_build_environment.home}/builds" do
 end
 
 if platform_family? :mac_os_x
+  cookbook_file "#{node.travis_build_environment.home}/.ssh/authorized_keys" do
+    owner node.travis_build_environment.user
+    group node.travis_build_environment.group
+    mode  0644
+
+    source "ci_user/authorized_keys"
+  end
+
   directory "#{node.travis_build_environment.home}/travis-utils" do
     owner node.travis_build_environment.user
     group node.travis_build_environment.group
