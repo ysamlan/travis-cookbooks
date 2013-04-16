@@ -23,11 +23,13 @@
 
 include_recipe "rvm"
 
-# for JRuby and JRuby 1.6.x in 1.9 mode by default.
-# For rvm::multi we assume it's OK to enforce JDK and assume JRuby will be
-# provided. MK.
-include_recipe "java"
-include_recipe "ant"
+unless platform_family?(:mac_os_x)
+  # for JRuby and JRuby 1.6.x in 1.9 mode by default.
+  # For rvm::multi we assume it's OK to enforce JDK and assume JRuby will be
+  # provided. MK.
+  include_recipe "java"
+  include_recipe "ant"
+end
 
 log "Using Ruby #{RUBY_VERSION}..."
 
