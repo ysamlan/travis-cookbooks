@@ -25,15 +25,17 @@
 include_recipe "apt" if ['debian', 'ubuntu'].member? node[:platform]
 
 # Make sure we have all we need to compile ruby implementations:
-include_recipe "networking_basic"
-include_recipe "build-essential"
 include_recipe "git"
-include_recipe "libyaml"
-include_recipe "libgdbm"
-include_recipe "libreadline"
-include_recipe "libxml"
-include_recipe "libssl"
-include_recipe "libncurses"
+unless platform_family?(:mac_os_x)
+  include_recipe "networking_basic"
+  include_recipe "build-essential"
+  include_recipe "libyaml"
+  include_recipe "libgdbm"
+  include_recipe "libreadline"
+  include_recipe "libxml"
+  include_recipe "libssl"
+  include_recipe "libncurses"
+end
 
 bash "install RVM" do
   user        node.travis_build_environment.user
