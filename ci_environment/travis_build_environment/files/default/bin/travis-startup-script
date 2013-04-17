@@ -40,18 +40,3 @@ try:
   call(["hostname", startup_info["hostname"]])
 except KeyError:
   pass
-
-try:
-  call(["dscl", ".", "-passwd", "/Users/travis", startup_info["password"]])
-except KeyError:
-  pass
-
-try:
-  call(["security", "set-keychain-password", "-o", "x", "-p", startup_info["password"]])
-except KeyError:
-  pass
-
-try:
-  call(["security", "unlock-keychain", "-p", startup_info["password"]])
-except KeyError:
-  pass
