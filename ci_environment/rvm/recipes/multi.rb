@@ -35,6 +35,7 @@ log "Using Ruby #{RUBY_VERSION}..."
 
 default_ruby = node[:rvm][:default]
 aliases      = node[:rvm][:aliases] || []
+gems         = node[:rvm][:gems] || []
 default_ruby_arguments = node.rvm.rubies.select{|rb| rb["name"] == default_ruby }.map{|rb| rb["arguments"] }.first
 
 log "Default Ruby will be #{default_ruby}"
@@ -75,6 +76,13 @@ aliases.each do |new_name, existing_name|
     code "#{rvm} alias create #{new_name} #{existing_name}"
 
     ignore_failure true # alias creation is not idempotent. MK.
+  end
+end
+
+gems.each do |gemname|
+  bash "install gem #{gemname}" do
+    setup.call(self)
+    code "#{rvm} all do gem install #{gemname} --no-ri --no-rdoc"
   end
 end
 
