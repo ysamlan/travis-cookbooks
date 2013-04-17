@@ -21,6 +21,11 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
+execute "update permissions on /usr/local" do
+  command "chown -R travis:admin /usr/local"
+  user "root"
+end
+
 cookbook_file "/usr/bin/travis-startup-script" do
   owner "root"
   group "wheel"
