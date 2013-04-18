@@ -64,6 +64,5 @@ template "/etc/launchd.conf" do
 
   source "etc/launchd.conf.erb"
 end
-end
 
 include_recipe "travis_build_environment::ci_user"
