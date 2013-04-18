@@ -37,6 +37,14 @@ unless platform_family?(:mac_os_x)
   include_recipe "libncurses"
 end
 
+bash "upgrade RVM" do
+  user node.travis_build_environment.user
+  cwd node.travis_build_environment.home
+  environment Hash['HOME' => node.travis_build_environment.home]
+  code 'rvm get stable'
+  only_if "test -f #{node.travis_build_environment.home}/.rvm/scripts/rvm"
+end
+
 bash "install RVM" do
   user        node.travis_build_environment.user
   cwd         node.travis_build_environment.home
