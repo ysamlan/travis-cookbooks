@@ -41,7 +41,7 @@ bash "upgrade RVM" do
   user node.travis_build_environment.user
   cwd node.travis_build_environment.home
   environment Hash['HOME' => node.travis_build_environment.home]
-  code 'rvm get stable'
+  code 'rvm get stable && rvm reload'
   only_if "test -f #{node.travis_build_environment.home}/.rvm/scripts/rvm"
 end
 

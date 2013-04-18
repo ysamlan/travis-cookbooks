@@ -57,4 +57,13 @@ directory "/etc/profile.d" do
   action :create
 end
 
+template "/etc/launchd.conf" do
+  owner "root"
+  group "wheel"
+  mode 0644
+
+  source "etc/launchd.conf.erb"
+end
+end
+
 include_recipe "travis_build_environment::ci_user"
