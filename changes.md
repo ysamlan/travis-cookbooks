@@ -1,4 +1,29 @@
-Current:
+### Upcoming:
+
+- Erlang has ODBC support enabled (Mathias Meyer)
+
+- Updated ark cookbook to v0.8.2 (Gilles Cornu)
+  [not committed yet, just here as an example]
+
+
+### Production .org ??.05.2014
+
+- Removed older versions of sbt and Scala (Gilles Cornu)
+
+
+### Production .org 30.04.2014
+
+- Updated virtualenv to 1.11.4 (Donald Stufft)
+
+- Added Python 3.4.0 and updated to 2.6.9, 2.7.6, 3.2.5, 3.3.5 and PyPy to 2.2.1 (Donald Stufft)
+
+- Use pyenv instead of deadsnakes to install Python (Donald Stufft)
+
+- Updated nvm to 0.5.0 (Jordan Harband)
+
+- Added Haskell GHC 7.8.2 (Dmitry Malikov)
+
+- Updated Erlang to 17.0 (Jose Valim)
 
 - Pre-install Scala 2.11.0 and sbt 0.13.2 (Gilles Cornu)
 
@@ -12,7 +37,7 @@ Current:
 
 - Updated Maven to 3.2.1 (Gilles Cornu)
 
-- Integrated new cookbook: android-sdk v0.2.0 (Gilles Cornu)
+- Added Android SDK 22.6.2 (Gilles Cornu)
 
 - Updated sbt-extras to 60b6f267d47e8dd915a3baaef3b0b63fef37e5dd (Gilles Cornu)
 
@@ -30,7 +55,8 @@ Current:
 
 - Support for HHVM nightly (Loïc Frering)
 
-Production .org 03.01.2014
+
+### Production .org 03.01.2014
 
 - Update Perl versions to 5.17.11, 5.18.1 and 5.19.6 (Henrik Hodne)
 
@@ -50,7 +76,8 @@ Production .org 03.01.2014
 
 - Upgraded Virtualenv to 1.11.1 (Alex Gaynor)
 
-Production .org 10.12.2013
+
+### Production .org 10.12.2013
 
 - Fix rvm warning that a Ruby version can't be found even though it's available (Josh Kalderimis)
 
@@ -62,7 +89,8 @@ Production .org 10.12.2013
 
 - Download Cassandra from Apache archive (Michael Klishin)
 
-Production .org and .com 29.11.2013:
+
+### Production .org and .com 29.11.2013
 
 - Update RVM to 1.24.5 (Josh Kalderimis)
   This will include updated checksums for Ruby 1.9.3 (p484) and changes to
