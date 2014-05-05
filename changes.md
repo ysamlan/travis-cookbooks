@@ -1,5 +1,8 @@
 ### Upcoming:
 
+- Change the Git PPA to a more up-to-date one (Mathias Meyer)
+  git installed from this ppa will include git-subtree
+
 - Erlang has ODBC support enabled (Mathias Meyer)
 
 - Updated ark cookbook to v0.8.2 (Gilles Cornu)
