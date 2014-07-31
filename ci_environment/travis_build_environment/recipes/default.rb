@@ -40,8 +40,27 @@ cookbook_file "/etc/default/locale" do
   source "etc/default/locale.sh"
 end
 
-execute "locale-gen en_US.UTF-8" do
-  user "root"
+locale_file = '/usr/share/i18n/SUPPORTED'
+if File.exists? locale_file
+  locales = File.read(locale_file).split("\n").reject { |l| l.start_with? "#" }.map { |l| l.split[0] }.uniq
+else
+  locales = %w(
+    en_US
+    en_US.UTF-8
+    en_UK
+    en_UK.UTF-8
+    en_AU
+    en_AU.UTF-8
+    de_DE
+    de_DE.UTF-8
+    fr_FR
+    fr_FR.UTF-8
+  )
+end
+locales.each do |locale|
+  execute "locale-gen #{locale}" do
+    user "root"
+  end
 end
 
 execute "dpkg-reconfigure locales" do
