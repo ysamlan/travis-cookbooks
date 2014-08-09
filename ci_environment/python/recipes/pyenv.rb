@@ -8,6 +8,7 @@ include_recipe "python::virtualenv"
   "make", "build-essential", "libssl-dev", "zlib1g-dev", "libbz2-dev",
   "libreadline-dev", "libsqlite3-dev", "wget", "curl", "llvm", "liblzma-dev",
   "libncurses-dev", "tk-dev",
+  "libblas-dev", "liblapack-dev", "gfortran",
 ].each do |pkg|
   package pkg
 end
