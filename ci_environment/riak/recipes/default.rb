@@ -5,7 +5,7 @@
 package 'apt-transport-https'
 
 apt_repository 'basho' do
-  uri          'http://apt.basho.com'
+  uri          'http://packagecloud.io'
   distribution node['lsb']['codename']
   components   ["main"]
   key          'https://packagecloud.io/gpg.key'
