@@ -10,7 +10,9 @@ apt_repository 'basho' do
   action :add
 end
 
-package 'riak'
+package 'riak' do
+  version node.riak.version
+end
 
 #
 # - Stop riak service to customize configuration files
